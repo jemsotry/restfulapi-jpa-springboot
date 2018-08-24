@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: restfulapi-jpa-springboot
+Implementation-Version: 0.1.0
+Built-By: joseeduardotriano
+Implementation-Vendor-Id: com.inventory
+Build-Jdk: 1.8.0_51
+Implementation-URL: http://projects.spring.io/spring-boot/restfulapi-j
+ pa-springboot/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
