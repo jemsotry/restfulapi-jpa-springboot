@@ -25,3 +25,6 @@
 - Stock list front end: access to `http://localhost:8080`
 
 curl -H "Content-Type: application/json" -X POST -d '{"name":"S12","currentPrice":"12"}' http://localhost:8080/api/v1/products
+
+### Run Dockerfile - expose 8087 port
+`docker-compose up`
