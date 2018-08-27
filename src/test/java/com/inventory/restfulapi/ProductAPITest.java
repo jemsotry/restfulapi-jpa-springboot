@@ -1,9 +1,16 @@
 package com.inventory.restfulapi;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.inventory.restfulapi.ProductData;
-import com.inventory.restfulapi.api.ProductAPI;
-import com.inventory.restfulapi.model.Product;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,14 +23,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.math.BigDecimal;
-import java.util.Map;
-
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.inventory.restfulapi.api.ProductAPI;
+import com.inventory.restfulapi.model.Product;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,12 +40,12 @@ public class ProductAPITest {
 
     @Test
     public void findAll() throws Exception {
-        Map<Long, Product> data = ProductData.INSTANCE.getProducts();
-        given(productAPI.findAll()).willReturn(ResponseEntity.ok(data));
-
+    	Product Product = new Product("Nintendo Switch", new BigDecimal(255));
+    	List<Product> allProducts = Arrays.asList(Product);
+    	given(productAPI.findAll()).willReturn(ResponseEntity.ok(allProducts));
         this.mockMvc.perform(get("/api/v1/products"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(data.size())));
+                .andExpect(jsonPath("$.*", hasSize(allProducts.size())));
     }
 
     @Test

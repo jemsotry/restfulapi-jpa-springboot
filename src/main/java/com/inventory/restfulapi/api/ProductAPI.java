@@ -1,17 +1,25 @@
 package com.inventory.restfulapi.api;
 
-import com.inventory.restfulapi.model.Product;
-import com.inventory.restfulapi.service.ProductService;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.math.BigDecimal;
-import java.util.Map;
-import java.util.Optional;
-import java.util.logging.Logger;
+import com.inventory.restfulapi.model.Product;
+import com.inventory.restfulapi.service.ProductService;
 
 
 @RestController
@@ -26,7 +34,7 @@ public class ProductAPI {
     }
 
     @GetMapping("/api/v1/products")
-    public ResponseEntity<Map<Long, Product>> findAll() {
+    public ResponseEntity<List <Product>> findAll() {
         return ResponseEntity.ok(productService.findAll());
     }
 
@@ -60,4 +68,9 @@ public class ProductAPI {
 
         return ResponseEntity.ok(productService.saveProduct(product));
     }
+    
+	@DeleteMapping("/api/v1/products/{productId}")
+	public void delete(@PathVariable("productId") Long productId) {
+		productService.delete(productId);
+	}
 }

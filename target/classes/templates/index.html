@@ -4,12 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Vue.js CRUD application</title>
-  
-  
+
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="/style.css">
-
   
 </head>
 
@@ -56,7 +54,7 @@
     <thead>
     <tr>
       <th>Name</th>
-      <th>currentPrice</th>
+      <th>Price</th>
       <th class="col-sm-2">Actions</th>
     </tr>
     </thead>
@@ -67,7 +65,7 @@
       </td>
       <td>
         {{ product.currentPrice }}
-        <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
       </td>
       <td>
         <a class="btn btn-warning btn-xs" v-link="{name: 'product-edit', params: {product_id: product.id}}">Edit</a>
@@ -86,7 +84,7 @@
       <input class="form-control" id="add-name" v-model="product.name" required/>
     </div>
     <div class="form-group">
-      <label for="add-currentPrice">currentPrice, <span class="glyphicon glyphicon-euro"></span></label>
+      <label for="add-currentPrice">Price, <span class="glyphicon glyphicon-usd"></span></label>
       <input type="number" class="form-control" id="add-currentPrice" v-model="product.currentPrice"/>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
@@ -98,7 +96,7 @@
   <h2>{{ product.name }}</h2>
   <b>Description: </b>
   <b>currentPrice:</b>
-  <div>{{ product.currentPrice }}<span class="glyphicon glyphicon-euro"></span></div>
+  <div>{{ product.currentPrice }}<span class="glyphicon glyphicon-usd"></span></div>
   <br/>
   <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
   <a v-link="'/'">Backt to product list</a>
@@ -112,7 +110,7 @@
       <input class="form-control" id="edit-name" v-model="product.name" required/>
     </div>
     <div class="form-group">
-      <label for="edit-currentPrice">currentPrice, <span class="glyphicon glyphicon-euro"></span></label>
+      <label for="edit-currentPrice">Price, <span class="glyphicon glyphicon-usd"></span></label>
       <input type="number" class="form-control" id="edit-currentPrice" v-model="product.currentPrice"/>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
@@ -133,12 +131,9 @@
 </body>
 </html>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js"></script>
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-
-    <script  src="/index.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script  src="/index.js"></script>
 </body>
 
 
