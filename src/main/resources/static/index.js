@@ -124,13 +124,14 @@ var ProductEdit = Vue.extend({
       //   id: product.id,
       //   name: product.name,
       //   currentPrice: product.currentPrice
-      // };
+      // }; ?name=tama&currentPrice=1&descripti
       console.log(this.product)
       axios.put('/api/v1/products/' 
         + this.$route.params.product_id 
-          + '?currentPrice=' + product.currentPrice, {
-          currentPrice: product.currentPrice
-        })
+        + '?name=' + product.name 
+        + '&currentPrice=' + product.currentPrice 
+        + '&description=' + product.description  
+        )
         .then(function (response) {
           // do something...
           router.go('/');

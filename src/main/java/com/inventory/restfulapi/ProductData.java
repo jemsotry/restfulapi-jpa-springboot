@@ -20,10 +20,10 @@ public enum ProductData {
     	
         products = new HashMap<>();
 
-        for (int i = 1; i <= 10; i++) {
-            Product newProduct = new Product("S" + i, new BigDecimal(i));
-            products.put(newProduct.getId(), newProduct);
-        }
+//        for (int i = 1; i <= 10; i++) {
+//            Product newProduct = new Product("S" + i, new BigDecimal(i), "");
+//            products.put(newProduct.getId(), newProduct);
+//        }
     }
 
     public Map<Long, Product> getProducts(){

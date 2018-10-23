@@ -28,6 +28,10 @@ public class Product {
     @NotNull
     @DecimalMin("0")
     private BigDecimal currentPrice;
+    
+    @NotNull
+    @Size(min = 2, max = 50)
+    private String description;
 
     private Long lastUpdate;
 
@@ -36,10 +40,11 @@ public class Product {
         this.lastUpdate = System.currentTimeMillis();
     }
 
-    public Product(String name, BigDecimal currentPrice) {
-        this.id = count.incrementAndGet();
-        this.name = name;
+    public Product(String name, BigDecimal currentPrice, String description) {
+    	this.id = count.incrementAndGet();
+    	this.name = name;
         this.currentPrice = currentPrice;
+        this.description = description;
         this.lastUpdate = System.currentTimeMillis();
     }
 
@@ -67,7 +72,21 @@ public class Product {
         this.currentPrice = currentPrice;
     }
 
-    public Long getLastUpdate() {
+    /**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getLastUpdate() {
         return lastUpdate;
     }
 
@@ -85,6 +104,7 @@ public class Product {
         if (!id.equals(product.id)) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (currentPrice != null ? !currentPrice.equals(product.currentPrice) : product.currentPrice != null) return false;
+        if (description != null ? !description.equals(product.description) : product.description != null) return false;
         return lastUpdate != null ? lastUpdate.equals(product.lastUpdate) : product.lastUpdate == null;
     }
 
@@ -93,6 +113,7 @@ public class Product {
         int result = id.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (currentPrice != null ? currentPrice.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (lastUpdate != null ? lastUpdate.hashCode() : 0);
         return result;
     }
@@ -101,6 +122,8 @@ public class Product {
         Product s = new Product();
         s.setId(this.id);
         s.setName(this.name);
+        s.setCurrentPrice(this.currentPrice);
+        s.setDescription(this.description);
         s.setLastUpdate(this.getLastUpdate());
         return s;
     }

@@ -56,7 +56,7 @@ public class ProductAPI {
     }
 
     @PutMapping("/api/v1/products/{productId}")
-    public ResponseEntity<Product> updatePriceOfAProduct(@PathVariable Long productId, BigDecimal currentPrice) {
+    public ResponseEntity<Product> updatePriceOfAProduct(@PathVariable Long productId, String name, BigDecimal currentPrice, String description) {
         Optional<Product> productOptional = productService.findProductById(productId);
         if (!productOptional.isPresent()) {
             logger.severe("ProductId " + productId + " is not existed");
@@ -65,6 +65,8 @@ public class ProductAPI {
 
         Product product = productOptional.get();
         product.setCurrentPrice(currentPrice);
+        product.setName(name);
+        product.setDescription(description);
 
         return ResponseEntity.ok(productService.saveProduct(product));
     }
