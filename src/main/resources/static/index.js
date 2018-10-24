@@ -1,27 +1,27 @@
 // example list
-var products = [{
-    id: 1,
-    name: 'Angular',
-    currentPrice: 100
-  },
-  {
-    id: 2,
-    name: 'Ember',
-    currentPrice: 100
-  },
-  {
-    id: 3,
-    name: 'React',
-    currentPrice: 100
-  }
-];
-
-var product = [];
-
-function findProduct(productId) {
-  console.log(productId)
-  return products[findProductKey(productId)];
-};
+//var products = [{
+//    id: 1,
+//    name: 'Angular',
+//    currentPrice: 100
+//  },
+//  {
+//    id: 2,
+//    name: 'Ember',
+//    currentPrice: 100
+//  },
+//  {
+//    id: 3,
+//    name: 'React',
+//    currentPrice: 100
+//  }
+//];
+//
+//var product = [];
+//
+//function findProduct(productId) {
+//  console.log(productId)
+//  return products[findProductKey(productId)];
+//};
 
 
 function axiosTest(productId) {
@@ -93,9 +93,22 @@ var Product = Vue.extend({
   template: '#product',
   data: function () {
     return {
-      product: findProduct(this.$route.params.product_id)
+      // product: findProduct(this.$route.params.product_id)
+    	product: null,
+        error: null
     };
-  }
+  },
+  created() {
+	    this.getProduct();
+  },
+  methods: {
+	    getProduct: function () {
+	      return axios.get('/api/v1/products/' + this.$route.params.product_id)
+	        .then((res) => {
+	          this.product = res.data;
+	        });
+	    } 
+	  }
 });
 
 var ProductEdit = Vue.extend({
