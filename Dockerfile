@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . /app
 
 RUN mvn -v
-RUN mvn clean install -DskipTests
+# RUN mvn clean install -DskipTests
 
 EXPOSE 8080
 LABEL maintainer=“jemsotry@gmail.com”
